@@ -21,6 +21,8 @@ TEXT = (
 def main() -> None:
     if not 1 <= len(TEXT) <= 280:
         raise SystemExit(f"Text length {len(TEXT)} code points is outside the allowed range 1-280")
+    if not TEXT.strip():
+        raise SystemExit("Text must not be only whitespace")
     output = Path(os.environ.get("ENTRY_OUTPUT", "/output/entry.txt"))
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(TEXT, encoding="utf-8")
